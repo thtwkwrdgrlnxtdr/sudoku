@@ -43,4 +43,6 @@ function readAndSolve(error, fileData) {
   console.log(sudoku.prettyBoard(solvedPuzzle), '\n');
 }
 
+console.log(readAndSolve())
+
 module.exports = readAndSolve;

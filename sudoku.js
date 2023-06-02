@@ -3,7 +3,23 @@
  * Возвращает игровое поле после попытки его решить.
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
-function solve(boardString) {}
+
+function solve(boardString) {
+
+  let board = []; // главный массив
+  let temp = boardString.split('');  // делаем из строки массив
+  const size = 9; // размер 
+  const boxSize = 3;
+
+    for (let i = 0; i < size; i++) {
+        board[i] = temp.slice((i*size), (i*size) + size);
+    }
+  
+  
+ 
+ 
+
+// console.table(solve(test))
 
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
