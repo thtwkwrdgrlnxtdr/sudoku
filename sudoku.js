@@ -3,7 +3,6 @@
  * Возвращает игровое поле после попытки его решить.
  * Договорись со своей командой, в каком формате возвращать этот результат.
  */
-const test = '1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--';
 
 function solve(boardString) {
 
@@ -18,8 +17,7 @@ function solve(boardString) {
   
   
  
-  return board
-}
+ 
 
 // console.table(solve(test))
 
@@ -27,8 +25,33 @@ function solve(boardString) {
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
  * Возвращает булевое значение — решено это игровое поле или нет.
  */
-function isSolved(board) {
+function isSolved(num, pos, board) {
+  const [r, c] = pos;
 
+  // проверка строк
+  for (let i = 0; i < size; i += 1) {
+    if (board[i][c] === num && i !== r) {
+      return false;
+    }
+  }
+  // проверка колонок
+  for (let i = 0; i < size; i += 1) {
+    if (board[r][i] === num && i !== c) {
+      return false;
+    }
+  }
+  // проверка сектора
+  const boxRow = Math.floor(r / boxSize) * boxSize;
+  const boxCol = Math.floor(c / boxSize) * boxSize;
+
+  for (let i = boxRow; i < boxRow + boxSize; i += 1) {
+    for (let j = boxCol; j < boxCol + boxSize; j += 1) {
+      if (board[i][j] === num && i !== r && j !== c) {
+        return false;
+      }
+    }
+  }
+  return true;
 }
 
 /**
@@ -36,9 +59,7 @@ function isSolved(board) {
  * Возвращает строку с игровым полем для последующего вывода в консоль.
  * Подумай, как симпатичнее сформировать эту строку.
  */
-function prettyBoard(board) {
-
-}
+function prettyBoard(board) {}
 
 // Экспортировать функции для использования в другом файле (например, readAndSolve.js).
 module.exports = {
